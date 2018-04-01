@@ -13,7 +13,7 @@ elif [ -d $1 ] ; then
     docker run -v $workspace:/home/ -it vincentravera/python-neural ipython3
 elif [ -f $1 ] ;then
     directory=$(dirname $1)
-    workspace=$(realpath $directory)
+    workspace=$(readlink -f $directory)
     filename=$(basename $1)
     echo "RUNNING : docker run -v $workspace:/home -it vincentravera/python-neural ipython3 -i $filename"
     docker run -v $workspace:/home -it vincentravera/python-neural ipython3 -i $filename
